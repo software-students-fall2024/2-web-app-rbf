@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
-# getting env variables 
+# getting env variables  
 load_dotenv()
 app.secret_key = os.getenv('SECRET_KEY')
 MONGO_URI = os.getenv('MONGO_URI')
