@@ -4,16 +4,17 @@ from flask_login import LoginManager, UserMixin, login_user, login_required, log
 from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 import os
+from dotenv import load_dotenv
+
 
 app = Flask(__name__)
-app.secret_key = os.urandom(24)          #####  MODIFY
 
-
-uri = 'mongodb+srv://bh2422:dOCLFnnJBAK1SFyS@rbfdatabase.fyphm.mongodb.net/' 
-
+load_dotenv()
+app.secret_key = os.getenv('SECRET_KEY')
+MONGO_URI = os.getenv('MONGO_URI')
 
 # MongoDB connection
-client = MongoClient(uri)
+client = MongoClient(MONGO_URI)
 db = client['job_tracker']
 users_collection = db['users']
 applications_collection = db['applications']
