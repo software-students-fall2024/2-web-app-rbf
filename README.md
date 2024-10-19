@@ -20,7 +20,7 @@ Our vision is to create a simple and easy to use job application tracker, that a
     * Clone the GitHub repository 
     '''bash
     git clone https://github.com/software-students-fall2024/2-web-app-rbf.git
-    '''
+    ''' 
 
 ### Step 2: Setting up the Virtual Environment:
 1.  Create a new virtual environment
