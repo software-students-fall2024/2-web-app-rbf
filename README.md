@@ -18,9 +18,9 @@ Our vision is to create a simple and easy to use job application tracker, that a
 2. Clone repository
     * Navigate to the desired directory/file location for the webapp
     * Clone the GitHub repository 
-    ```
-     git clone https://github.com/software-students-fall2024/2-web-app-rbf.git
-    ```
+        ```
+        git clone https://github.com/software-students-fall2024/2-web-app-rbf.git
+        ```
 
 ### Step 2: Setting up the Virtual Environment:
 1.  Create a new virtual environment
@@ -45,7 +45,7 @@ Our vision is to create a simple and easy to use job application tracker, that a
 
 ### Step 4. Set Up The Environment File
 * The environment file contains sensitive information that is needed to run the web app.
-This is information like the server name, server identifier, the secret key, and other environment variables. For this sensitive file was sent to the graders and admins.
+This is information like the server name, server identifier, the secret key, and other environment variables. For this project, the environemnt file was sent to the graders and admins.
 
 1. Download the environment file
 2. Move the .env file to the main directory of the web app
@@ -62,12 +62,13 @@ This is information like the server name, server identifier, the secret key, and
         set FLASK_APP=app.py
         ```
 3. Start Flask
-    * run 
+    * Run 
         ```
         flask run
         ```
 4. Open the web app
-    * Your terminal will output a link, opem the link in your web browser to run the app
+    * Your terminal will output a link, open the link in your web browser to run the app
+
 ## Task boards
 
 - *RBF - Sprint 1:* https://github.com/orgs/software-students-fall2024/projects/27
