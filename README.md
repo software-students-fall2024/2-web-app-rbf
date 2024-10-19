@@ -2,15 +2,15 @@
 
 A little exercise to build a web application following an agile development process. See the [instructions](instructions.md) for more detail. 
 
-## Product vision statement
+## Product Vision Statement
 
 Our vision is to create a simple and easy to use job application tracker, that aims to help job seekers stay organized and prepared during their application process's.
 
-## User stories
+## User Stories
 
 *User Story Issues:* https://github.com/software-students-fall2024/2-web-app-rbf/issues
 
-## Steps necessary to run the software
+## How to Run the Software
 
 ### Step 1: Install Python and the Repository
 1. Python
@@ -69,7 +69,7 @@ This is information like the server name, server identifier, the secret key, and
 4. Open the web app
     * Your terminal will output a link, open the link in your web browser to run the app
 
-## Task boards
+## Task Boards
 
 - *RBF - Sprint 1:* https://github.com/orgs/software-students-fall2024/projects/27
 - *RBF - Sprint 2:* https://github.com/orgs/software-students-fall2024/projects/29
