@@ -1,0 +1,86 @@
+<!-- SORT DATA PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Tracker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- BLUE HEADING SECTION -->
+        <header class="header">
+            <a href="#home" class="webName"><i class='bx bx-briefcase' id="logo"></i> Job Tracker</a>
+            <i class="bx bx-menu" id="menu-icon"></i> <!-- Menu icon -->
+
+            <!-- Logout button -->
+            <div class="logout-button"><a href="{{ url_for('logout') }}">Logout</a></div>
+            
+            <!-- Navbar content -->
+            <nav class="navbar">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('add') }}">Add</a>
+                <a href="{{ url_for('index') }}">Edit/Delete</a> <!-- link to Edit/Delete -->
+                <a href="{{ url_for('search') }}">Search</a>
+                <a href="{{ url_for('sort') }}" class="active">Sort</a> <!-- current page -->
+            </nav>
+        </header>
+
+        <!-- CONTENT -->
+        <section class="sort" id="sort">
+            <h2 class="heading">Sort Data by Category</h2>
+            
+            <!-- Sort Form -->
+            <form action="{{ url_for('sort') }}" method="POST">
+                <label for="category">Select a Category:</label>
+                <select name="category" id="category">
+                    <option value="date">Date</option>
+                    <option value="company">Company</option>
+                    <option value="industry">Industry</option>
+                    <option value="position">Position</option>
+                </select><br><br>
+
+                <label for="order">Sort Order:</label>
+                <select name="order" id="order">
+                    <option value="asc">Ascending</option>
+                    <option value="desc">Descending</option>
+                </select><br><br>
+
+                <button type="submit">Sort</button>
+            </form>
+        </section>
+
+        <!-- DISPLAY SORTED APPLICATIONS -->
+        {% if applications %}
+        <section class="results">
+            <h3>Search Results:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Company</th>
+                        <th>Industry</th>
+                        <th>Position Title</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                        <tr>
+                            <td>{{ application.date }}</td>
+                            <td>{{ application.company }}</td>
+                            <td>{{ application.industry }}</td>
+                            <td>{{ application.position }}</td>
+                            <td>{{ application.status }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>        
+        {% endif %}
+        
+        <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    </body>
+</html>

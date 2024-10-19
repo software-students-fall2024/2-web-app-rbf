@@ -1,0 +1,114 @@
+<!-- SEARCH DATA PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Tracker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- BLUE HEADING SECTION -->
+        <header class="header">
+            <a href="#home" class="webName"><i class='bx bx-briefcase' id="logo"></i> Job Tracker</a>
+            <i class="bx bx-menu" id="menu-icon"></i> <!-- Menu icon -->
+
+            <!-- Logout button -->
+            <div class="logout-button"><a href="{{ url_for('logout') }}">Logout</a></div>
+            
+            <!-- Navbar content -->
+            <nav class="navbar">
+                <a href="{{ url_for('index') }}">Home</a>
+                <a href="{{ url_for('add') }}">Add</a>
+                <a href="{{ url_for('index') }}">Edit/Delete</a> <!-- link to Edit/Delete -->
+                <a href="{{ url_for('search') }}" class="active">Search</a> <!-- current page -->
+                <a href="{{ url_for('sort') }}">Sort</a>
+            </nav>
+        </header>
+
+        <!-- SEARCH -->
+        <section class="search" id="search">
+            <h2 class="heading">Search by Category</h2>
+            <form action="{{ url_for('search') }}" method="POST">
+
+                <!-- Choose what to search by -->
+                <label for="category">Select a Category:</label>
+                <select id="category" name="category" required onchange="this.form.submit()">
+                    <option value="">--Choose a Category--</option>
+                    <option value="date">Date</option>
+                    <option value="company" {% if category == 'company' %}selected{% endif %}>Company</option>
+                    <option value="industry" {% if category == 'industry' %}selected{% endif %}>Industry</option>
+                    <option value="position" {% if category == 'position' %}selected{% endif %}>Position</option>
+                    <option value="status" {% if category == 'status' %}selected{% endif %}>Status</option>
+                </select><br><br>
+    
+                <!-- Search by date -->
+                {% if category == 'date' %}
+                    <label for="date">Enter Date:</label>
+                    <input type="date" id="date" name="date" required><br><br>
+    
+                <!-- Search by company -->
+                {% elif category == 'company' %}
+                    <label for="company">Enter Company:</label>
+                    <input type="text" id="company" name="company" required><br><br>
+    
+                <!-- Search by industry -->
+                {% elif category == 'industry' %}
+                    <label for="industry">Enter Industry:</label>
+                    <input type="text" id="industry" name="industry" required><br><br>
+    
+                <!-- Search by position -->
+                {% elif category == 'position' %}
+                    <label for="position">Enter Position:</label>
+                    <input type="text" id="position" name="position" required><br><br>
+    
+                <!-- Search by status -->
+                {% elif category == 'status' %}
+                    <label for="status">Select Status:</label>
+                    <select id="status" name="status" required>
+                        <option value="applied">Applied</option>
+                        <option value="interviewing">Interviewing</option>
+                        <option value="rejected">Rejected</option>
+                    </select><br><br>
+                {% endif %}
+    
+                <button type="submit">Search</button> <!-- Search applications -->
+            </form>
+        </section>
+
+        <!-- DISPLAY FILTERED APPLICATIONS -->
+        {% if applications %}
+        <section class="results">
+            <h3>Search Results:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Company</th>
+                        <th>Industry</th>
+                        <th>Position Title</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                        <tr>
+                            <td>{{ application.date }}</td>
+                            <td>{{ application.company }}</td>
+                            <td>{{ application.industry }}</td>
+                            <td>{{ application.position }}</td>
+                            <td>{{ application.status }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>        
+        {% else %}
+            <p class="no-results">No applications found.</p>
+        {% endif %}
+
+        <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!-- ADD DATA PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Tracker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- BLUE HEADING SECTION -->
+        <header class="header">
+            <a href="#home" class="webName"><i class='bx bx-briefcase' id="logo"></i> Job Tracker</a>
+            <i class="bx bx-menu" id="menu-icon"></i> <!-- Menu icon -->
+
+            <!-- Logout button -->
+            <div class="logout-button"><a href="{{ url_for('logout') }}">Logout</a></div>
+            
+            <!-- Navbar content -->
+            <nav class="navbar">
+                <a href="{{ url_for('index') }}">Home</a> 
+                <a href="{{ url_for('add') }}" class="active">Add</a> <!-- current page -->
+                <a href="{{ url_for('index') }}">Edit/Delete</a> <!-- link to Edit/Delete -->
+                <a href="{{ url_for('search') }}">Search</a>
+                <a href="{{ url_for('sort') }}">Sort</a>
+            </nav>
+        </header>
+
+        <!-- CONTENT -->
+        <section class="add" id="add">
+            <h2 class="heading">Add an Application!</h2>
+            <form action="{{ url_for('add') }}" method="POST">
+
+                <!-- Date applied to job -->
+                <label for="date">Date Applied:</label>
+                <input type="date" id="date" name="date" required><br><br>
+
+                <!-- Company of job -->
+                <label for="company">Company:</label>
+                <input type="text" id="company" name="company" required><br><br>
+
+                <!-- Industry of job -->
+                <label for="industry">Industry:</label>
+                <input type="text" id="industry" name="industry" required><br><br>
+
+                <!-- Position of job -->
+                <label for="position">Position:</label>
+                <input type="text" id="position" name="position" required><br><br>
+
+                <button type="submit">Add Application</button> <!-- Add application -->
+            </form>
+        </section>
+        <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    </body>
+</html>

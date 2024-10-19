@@ -1,0 +1,73 @@
+<!-- HOME PAGE -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Job Tracker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <!-- BLUE HEADING SECTION -->
+        <header class="header">
+            <a href="#home" class="webName"><i class='bx bx-briefcase' id="logo"></i> Job Tracker</a>
+            <i class="bx bx-menu" id="menu-icon"></i> <!-- Menu icon -->
+
+            <!-- Logout button -->
+            <div class="logout-button"><a href="{{ url_for('logout') }}">Logout</a></div>
+            
+            <!-- Navbar content -->
+            <nav class="navbar">
+                <a href="{{ url_for('index') }}" class="active">Home</a> <!-- current page -->
+                <a href="{{ url_for('add') }}">Add</a>
+                <a href="{{ url_for('index') }}">Edit/Delete</a> <!-- link to Edit/Delete -->
+                <a href="{{ url_for('search') }}">Search</a>
+                <a href="{{ url_for('sort') }}">Sort</a>
+            </nav>
+        </header>
+
+        <!-- HOME PAGE -->
+        <h2>Welcome to your dashboard, {{ username }}!</h2>
+        <p>Here are all of your current applications...</p>
+        
+        <!-- Dashboard of user's applications -->
+        <section class="home-results"> <!-- Use same class as search.html -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action</th> <!-- For Edit/Delete -->
+                        <th>Date</th>
+                        <th>Company</th>
+                        <th>Industry</th>
+                        <th>Position</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                        <tr>
+                            <!-- Edit/Delete -->
+                            <td>
+                                <a href="{{ url_for('edit', application_id=application._id) }}">Edit</a> | 
+                                <a href="{{ url_for('delete', application_id=application._id) }}">Delete</a>
+                            </td>
+
+                            <td>{{ application.date }}</td>
+                            <td>{{ application.company }}</td>
+                            <td>{{ application.industry }}</td>
+                            <td>{{ application.position }}</td>
+                            <td>{{ application.status }}</td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">No applications found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+        <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    </body>
+</html>
